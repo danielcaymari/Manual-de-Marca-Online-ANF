@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F4F4F5">
+    <title>Manual de Marca — ANF AC</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/favicon-light.png?v=2" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="assets/img/favicon-dark.png?v=2" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <!-- Overlay para cierre en móvil -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Botón flotante móvil (hamburguesa / cerrar) — solo visible en ≤1024px -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+        <svg class="icon-hamburger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+        <svg class="icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+    </button>
+
+    <!-- HERO — Video de fondo a pantalla completa -->
+    <section class="hero" id="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="assets/video/hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-badge">Manual de Marca</div>
+    </section>
+
+    <div class="layout-container">
+
+        <!-- ===========================
+             BARRA LATERAL
+             =========================== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo-container">
+                <img src="assets/brand/Logotipo.svg" alt="ANF AC" class="sidebar-logo">
+
+                <!-- Botón colapso — solo desktop -->
+                <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Alternar barra lateral">
+                    <!-- Icono expandido (sidebar abierta) -->
+                    <svg class="icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="4"/>
+                        <line x1="15" y1="3" x2="15" y2="21"/>
+                        <path d="M10 15l-3-3 3-3"/>
+                    </svg>
+                    <!-- Icono colapsado (sidebar cerrada) -->
+                    <svg class="icon-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="4"/>
+                        <line x1="9" y1="3" x2="9" y2="21"/>
+                        <path d="M13 9l3 3-3 3"/>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Navegación principal">
+                <ul class="nav-list" id="navList">
+                    <li><a href="#s00" class="active"><span class="nav-icon">›</span>00 — Cómo usar este manual</a></li>
+                    <li><a href="#s01"><span class="nav-icon">›</span>01 — Manifiesto</a></li>
+                    <li><a href="#s02"><span class="nav-icon">›</span>02 — Estrategia de marca</a></li>
+                    <li><a href="#s03"><span class="nav-icon">›</span>03 — ADN de marca</a></li>
+                    <li><a href="#s04"><span class="nav-icon">›</span>04 — Voz y lenguaje</a></li>
+                    <li><a href="#s05"><span class="nav-icon">›</span>05 — Identidad visual</a></li>
+                    <li><a href="#s06"><span class="nav-icon">›</span>06 — Sensorial</a></li>
+                    <li><a href="#s07"><span class="nav-icon">›</span>07 — Aplicaciones</a></li>
+                    <li><a href="#s08"><span class="nav-icon">›</span>08 — Arquitectura de marca</a></li>
+                    <li><a href="#s09"><span class="nav-icon">›</span>09 — ANF AC Shop</a></li>
+                    <li><a href="#s10"><span class="nav-icon">›</span>10 — Gobernanza</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- ===========================
+             CONTENIDO PRINCIPAL
+             =========================== -->
+        <main class="main-content">
+
+            <!-- SECCIONES 00–04 -->
+            <div class="content-wrapper">
+
+                <section id="s00" class="fade-in">
+                    <div class="section-header">
+                        <h2>00 — Cómo usar este manual</h2>
+                    </div>
+                    <p>Este manual es el sistema operativo de la marca ANF AC. No es un catálogo de recursos gráficos: es una guía de decisiones. Contiene los principios, el lenguaje y las reglas que dan forma a cómo ANF AC se presenta, comunica y actúa ante el mundo.</p>
+
+                    <div class="saas-card">
+                        <h3>Para quién es este manual</h3>
+                        <p>Está dirigido a cualquier persona que trabaje con la marca, de forma interna o externa: equipo de marketing y comunicación, diseñadores, desarrolladores, agencias colaboradoras, equipos comerciales y de producto.</p>
+                    </div>
+
+                    <h3>Cómo usarlo en la práctica</h3>
+                    <p>Antes de crear cualquier pieza, formula estas tres preguntas:</p>
+                    <ol>
+                        <li>¿Esto refleja la esencia de ANF AC?</li>
+                        <li>¿Está alineado con nuestra voz y nuestro sistema visual?</li>
+                        <li>¿Añade claridad o añade ruido?</li>
+                    </ol>
+
+                    <blockquote>La coherencia es la forma más alta de creatividad.</blockquote>
+                </section>
+
+                <section id="s01" class="fade-in">
+                    <div class="section-header">
+                        <h2>01 — Manifiesto</h2>
+                    </div>
+                    <p>Vivimos en un mundo que prometió hacerse más simple con la digitalización. Y en parte lo cumplió. Firmamos desde el móvil. Gestionamos trámites sin salir de casa.</p>
+                    <p>Pero también creó algo que nadie anunció: <strong>la incertidumbre digital</strong>.</p>
+
+                    <div class="mockup-placeholder">
+                        [Mockup: Interfaz de Firma Segura / Entorno Crítico]
+                    </div>
+
+                    <p><strong>ANF AC existe para eliminar esa incertidumbre.</strong></p>
+                    <p>No somos una empresa de tecnología que emite certificados. Somos una infraestructura de confianza. Somos la garantía de que lo que ocurre en el entorno digital es real, válido y seguro.</p>
+
+                    <blockquote>Certeza digital. Eso es lo que hacemos. Eso es lo que somos.</blockquote>
+                </section>
+
+                <section id="s02" class="fade-in">
+                    <div class="section-header">
+                        <h2>02 — Estrategia de marca</h2>
+                    </div>
+
+                    <div class="saas-card">
+                        <h3>Visión</h3>
+                        <p>Ser la marca de referencia en confianza digital en Europa: la primera opción cuando la seguridad, la legalidad y la precisión no admiten margen de error.</p>
+                    </div>
+
+                    <div class="saas-card">
+                        <h3>Misión</h3>
+                        <p>Proporcionar los servicios, las soluciones y la experiencia que permiten a cualquier organización o persona operar en el entorno digital con plena certeza jurídica, técnica y operativa.</p>
+                    </div>
+
+                    <h3>Posicionamiento</h3>
+                    <p>ANF AC es el garante de las decisiones digitales críticas. A diferencia de los proveedores técnicos estándar, construimos confianza digital que resiste el presente y prepara el futuro.</p>
+                </section>
+
+                <section id="s03" class="fade-in">
+                    <div class="section-header">
+                        <h2>03 — ADN de marca</h2>
+                    </div>
+
+                    <div class="saas-card">
+                        <h3>Valores Operativos</h3>
+                        <ul>
+                            <li><strong>Certeza:</strong> Generamos seguridad y eliminamos la duda.</li>
+                            <li><strong>Rigor:</strong> Exigencia técnica, normativa y ética.</li>
+                            <li><strong>Claridad:</strong> Hacemos comprensible lo complejo.</li>
+                            <li><strong>Responsabilidad:</strong> Actuamos acorde a nuestro rol en infraestructuras críticas.</li>
+                            <li><strong>Precisión:</strong> Exactitud absoluta, la diferencia entre válido e inválido.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="s04" class="fade-in">
+                    <div class="section-header">
+                        <h2>04 — Voz y lenguaje</h2>
+                    </div>
+                    <p>La voz de ANF AC es experta, clara, directa y próxima. Nunca fría, nunca condescendiente, nunca técnica sin propósito.</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>En lugar de...</th>
+                                <th>ANF AC dice...</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>"Prestamos servicios cualificados de confianza..."</td>
+                                <td>"Tu firma electrónica tiene el mismo valor legal que una firma manuscrita..."</td>
+                            </tr>
+                            <tr>
+                                <td>"Innovación tecnológica de primer nivel"</td>
+                                <td>"Investigamos hoy la criptografía que protegerá el mañana"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </div><!-- /content-wrapper (s00–s04) -->
+
+            <!-- SECCIÓN 05: identidad visual — contiene bloques full-bleed -->
+            <section id="s05">
+
+                <div class="content-wrapper" style="padding-bottom: 1.5rem;">
+                    <div class="section-header fade-in">
+                        <h2>05 — Identidad visual</h2>
+                    </div>
+                    <p class="fade-in">La identidad visual de ANF AC traduce sus valores en formas y comportamientos precisos. El sistema visual equilibra la autoridad técnica con la máxima claridad operativa a través de componentes perfectamente articulados.</p>
+                </div>
+
+                <!-- Logotipo sticky interactivo -->
+                <div class="logo-sticky-wrapper">
+                    <div class="logo-visual">
+                        <div class="logo-display-container" id="logoDisplayContainer">
+                            <img src="assets/brand/Logotipo.svg" alt="ANF AC Logo" class="interactive-logo" id="interactiveLogo">
+                        </div>
+                    </div>
+                    <div class="logo-content">
+                        <div class="logo-step" data-scale="1" data-rotate="0" data-invert="0">
+                            <h3>El Logotipo</h3>
+                            <p>Nuestra marca gráfica se define a través de la simetría y el rigor geométrico. Representa un sello inalterable de autenticidad en entornos digitales de alta exigencia.</p>
+                        </div>
+                        <div class="logo-step" data-scale="1.15" data-rotate="-5" data-invert="1">
+                            <h3>Adaptación y Contraste</h3>
+                            <p>El logotipo muta de manera controlada para resistir aplicaciones oscuras o entornos de alta densidad de información (Dark Mode), garantizando el cumplimiento de la norma técnica sin perder legibilidad.</p>
+                        </div>
+                        <div class="logo-step" data-scale="0.9" data-rotate="0" data-invert="0">
+                            <h3>Área de Respeto</h3>
+                            <p>Un espacio de seguridad perimetral aísla al identificador de ruidos visuales circundantes. Menos interferencias significan mayor velocidad de reconocimiento técnico y corporativo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-wrapper" style="padding-top: 0; padding-bottom: 1.5rem;">
+                    <p class="fade-in">El sistema de color transmite autoridad, modernidad y claridad. Haz scroll para explorar el sistema cromático a pantalla completa.</p>
+                </div>
+
+                <!-- Colores fullscreen sticky -->
+                <div class="fullscreen-scroll-container">
+                    <div class="fullscreen-sticky" id="colorSticky">
+                        <div class="color-info" id="colorInfo">
+                            <div class="color-hex">#00509B</div>
+                            <div class="color-details">Azul Profundo · Institucional</div>
+                        </div>
+                    </div>
+                    <div class="color-trigger trigger-1" data-bg="#00509B" data-name="Azul Profundo · Institucional" data-text="#FFFFFF"></div>
+                    <div class="color-trigger trigger-2" data-bg="#184182" data-name="Azul Medio · Soporte"          data-text="#FFFFFF"></div>
+                    <div class="color-trigger trigger-3" data-bg="#223261" data-name="Azul Oscuro · Contraste"       data-text="#FFFFFF"></div>
+                    <div class="color-trigger trigger-4" data-bg="#FFD400" data-name="Amarillo · Acento Cálido"      data-text="#1A1A1A"></div>
+                </div>
+
+                <!-- Tipografía split sticky -->
+                <div class="content-wrapper">
+                    <div class="typo-sticky-wrapper">
+                        <div class="typo-visual">
+                            <div class="typo-big-letter" id="typoLetter" style="font-family: 'Plus Jakarta Sans';">Aa</div>
+                        </div>
+                        <div class="typo-content">
+                            <div class="typo-step" data-font="'Plus Jakarta Sans', sans-serif" data-letter="Aa">
+                                <h3>Tipografía Principal</h3>
+                                <p style="font-family: 'Plus Jakarta Sans'; font-size: 1.15rem;"><strong>Plus Jakarta Sans</strong></p>
+                                <p>Familia geométrica de palo seco. Se usa en títulos, subtítulos, navegación y elementos de interfaz para transmitir modernidad contenida y autoridad.</p>
+                            </div>
+                            <div class="typo-step" data-font="'Inter', sans-serif" data-letter="Ag">
+                                <h3>Tipografía Secundaria</h3>
+                                <p style="font-family: 'Inter'; font-size: 1.15rem;"><strong>Inter</strong></p>
+                                <p>Familia con excelente legibilidad en pantalla. Se usa en cuerpo de texto, descripciones y documentación pesada para garantizar claridad absoluta.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mockup-placeholder fade-in">
+                        [Mockup: Aplicación de Logotipo en Entorno Dark Mode]
+                    </div>
+                    <div class="mockup-placeholder fade-in">
+                        [Mockup: Tarjetas de Presentación y Papelería Premium]
+                    </div>
+                </div>
+
+            </section><!-- /s05 -->
+
+            <!-- SECCIONES 06–10 -->
+            <div class="content-wrapper">
+
+                <section id="s06" class="fade-in">
+                    <div class="section-header">
+                        <h2>06 — Sensorial</h2>
+                    </div>
+                    <div class="saas-card">
+                        <h3>Dimensión Sonora y Experiencial</h3>
+                        <p><strong>Sonido:</strong> Instrumental, moderno y sin estridencias. Texturas electrónicas sobrias que transmiten precisión y calma.</p>
+                        <p><strong>Digital:</strong> Las interfaces deben cargarse rápido, comportarse de forma predecible y eliminar fricción. Una experiencia lenta contradice la promesa de certeza.</p>
+                    </div>
+                </section>
+
+                <section id="s07" class="fade-in">
+                    <div class="section-header">
+                        <h2>07 — Aplicaciones</h2>
+                    </div>
+                    <p>La identidad debe ser reconocible en cualquier soporte. La coherencia no exige uniformidad, sino reflejar los mismos principios adaptados al medio.</p>
+                    <div class="mockup-placeholder">
+                        [Mockup: Feed de Redes Sociales Corporativo]
+                    </div>
+                </section>
+
+                <section id="s08" class="fade-in">
+                    <div class="section-header">
+                        <h2>08 — Arquitectura de marca</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nivel</th>
+                                <th>Nombre</th>
+                                <th>Registro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Marca madre</strong></td>
+                                <td>ANF AC</td>
+                                <td>Autoridad, técnico-estratégico</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Submarca</strong></td>
+                                <td>ANF AC SHOP</td>
+                                <td>Accesible, guiado, tranquilizador</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Solución</strong></td>
+                                <td>eCoC</td>
+                                <td>Técnico-operativo, sectorial</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="s09" class="fade-in">
+                    <div class="section-header">
+                        <h2>09 — ANF AC Shop</h2>
+                    </div>
+                    <p>Plataforma orientada a hacer que la obtención de certificados digitales sea tan simple que el cliente no tenga que pensar en ello.</p>
+                    <blockquote>El valor no está en el certificado. Está en hacer que el usuario lo consiga sin frustración.</blockquote>
+                    <div class="mockup-placeholder" style="height: 380px;">
+                        [Mockup: UI de Onboarding de ANF AC Shop]
+                    </div>
+                </section>
+
+                <section id="s10" class="fade-in">
+                    <div class="section-header">
+                        <h2>10 — Gobernanza</h2>
+                    </div>
+                    <div class="saas-card">
+                        <p>Una marca coherente no es accidental: es el resultado de decisiones consistentes. La gobernanza establece quién tiene autoridad para tomar decisiones y cómo se gestiona la evolución de la marca.</p>
+                        <p><strong>Si no está en el manual, pregunta antes de actuar.</strong></p>
+                    </div>
+                </section>
+
+            </div><!-- /content-wrapper (s06–s10) -->
+
+        </main>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
