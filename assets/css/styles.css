@@ -1,0 +1,799 @@
+/* ==========================================================================
+   ANF AC — MANUAL DE MARCA (SaaS MODERN STYLE)
+   v2.1 — Fixes: sidebar flash, colapso centrado, margen contenido, responsive
+   ========================================================================== */
+
+:root {
+    /* Sistema Cromático ANF AC */
+    --blue-1: #00509B;
+    --blue-2: #184182;
+    --blue-3: #223261;
+    --yellow-1: #FFD400;
+
+    /* UI Design Colors */
+    --bg-page:      #FAFAFA;
+    --bg-sidebar:   #F4F4F5;          /* sidebar gris claro cuando está abierta */
+    --text-main:    #1A1A1A;
+    --text-muted:   #71717A;
+    --border-color: #E4E4E7;
+
+    /* Tipografía */
+    --font-title: 'Plus Jakarta Sans', sans-serif;
+    --font-body:  'Inter', sans-serif;
+
+    /* Layout */
+    --sidebar-width:     272px;
+    --sidebar-collapsed: 60px;
+
+    /* Animaciones */
+    --ease-spring:       cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-layout: 0.40s var(--ease-spring);
+    --transition-ui:     0.22s ease;
+}
+
+/* ==========================================================================
+   RESET Y BASE
+   ========================================================================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-main);
+    background-color: var(--bg-page);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   TIPOGRAFÍA
+   ========================================================================== */
+h1, h2, h3, h4, h5 {
+    font-family: var(--font-title);
+    color: var(--text-main);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+p, ul, ol {
+    margin-bottom: 1.5rem;
+    font-size: 1.0rem;
+    color: #3F3F46;
+}
+
+ul, ol { padding-left: 1.5rem; }
+li { margin-bottom: 0.5rem; }
+
+a {
+    text-decoration: none;
+    color: var(--blue-1);
+    transition: color var(--transition-ui);
+}
+
+strong { color: var(--text-main); }
+
+h3 {
+    font-size: 1.25rem;
+    margin: 2rem 0 0.75rem 0;
+    color: var(--blue-3);
+}
+
+blockquote {
+    font-size: 1.15rem;
+    font-family: var(--font-title);
+    font-weight: 500;
+    color: var(--blue-2);
+    padding: 1.5rem 1.75rem;
+    background: #F8FAFC;
+    border-left: 3px solid var(--blue-1);
+    border-radius: 0 12px 12px 0;
+    margin: 2rem 0;
+}
+
+/* ==========================================================================
+   HERO — VIDEO FULLSCREEN
+   ========================================================================== */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: var(--blue-3);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.99;
+}
+
+
+/* ==========================================================================
+   LAYOUT PRINCIPAL
+   ========================================================================== */
+.layout-container {
+    display: flex;
+    position: relative;
+    background-color: var(--bg-page);
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   BARRA LATERAL — DESKTOP
+   ========================================================================== */
+.sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background-color: var(--bg-sidebar);  /* blanco por defecto */
+    padding: 1.5rem 1rem;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    overflow: hidden;
+    transition:
+        width var(--transition-layout),
+        padding var(--transition-layout);
+}
+
+/* -------------------------------------------------------------------------
+   LOGO CONTAINER
+   ------------------------------------------------------------------------- */
+.sidebar-logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.75rem;
+    flex-shrink: 0;
+    min-height: 36px; /* altura fija para evitar saltos de layout */
+}
+
+.sidebar-logo {
+    height: 20px;
+    width: auto;
+    display: block;
+    flex-shrink: 1;
+    min-width: 0;
+    /* FIX FLASH: aparece con delay para esperar a que el ancho se expanda */
+    opacity: 1;
+    visibility: visible;
+    overflow: hidden;
+    transition:
+        opacity  0.18s ease 0.28s,
+        visibility 0.18s ease 0.28s,
+        width 0.18s ease 0.28s,
+        max-width 0.18s ease 0.28s;
+    max-width: 160px;
+}
+
+/* -------------------------------------------------------------------------
+   NAV — visible con delay al expandir
+   ------------------------------------------------------------------------- */
+.sidebar-nav {
+    opacity: 1;
+    visibility: visible;
+    flex-grow: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* FIX FLASH: aparece con delay */
+    transition:
+        opacity  0.18s ease 0.28s,
+        visibility 0.18s ease 0.28s;
+}
+
+.sidebar-nav::-webkit-scrollbar { display: none; }
+
+/* -------------------------------------------------------------------------
+   BOTÓN TOGGLE DESKTOP
+   ------------------------------------------------------------------------- */
+.sidebar-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: background-color var(--transition-ui), color var(--transition-ui);
+}
+
+.sidebar-toggle-btn:hover {
+    background-color: rgba(0,0,0,0.06);
+    color: var(--text-main);
+}
+
+/* Iconos del toggle — gestionados por CSS puro */
+.sidebar-toggle-btn .icon-open   { display: flex; }
+.sidebar-toggle-btn .icon-closed { display: none; }
+
+/* ==========================================================================
+   ESTADO COLAPSADO (DESKTOP)
+   ========================================================================== */
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed);
+    padding: 1.5rem 0;
+    background-color: #FFFFFF;   /* blanco cuando colapsada */
+}
+
+/* FIX CENTRADO: logo sale del flujo → botón queda centrado */
+.sidebar.collapsed .sidebar-logo {
+    opacity: 0;
+    visibility: hidden;
+    max-width: 0;
+    overflow: hidden;
+    /* se oculta RÁPIDO al colapsar (sin delay) */
+    transition: opacity 0.12s ease, visibility 0s linear 0.12s, max-width 0.15s ease;
+}
+
+/* FIX FLASH: nav se oculta RÁPIDO al colapsar (sin delay) */
+.sidebar.collapsed .sidebar-nav {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.12s ease, visibility 0s linear 0.12s;
+}
+
+/* Contenedor centrado cuando colapsado */
+.sidebar.collapsed .sidebar-logo-container {
+    justify-content: center;
+    margin-bottom: 1rem;
+    padding: 0;
+}
+
+/* El botón ocupa todo el ancho centrado */
+.sidebar.collapsed .sidebar-toggle-btn {
+    width: 100%;
+    justify-content: center;
+    border-radius: 0;
+    padding: 8px 0;
+}
+
+.sidebar.collapsed .sidebar-toggle-btn:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Swap de íconos */
+.sidebar.collapsed .icon-open   { display: none; }
+.sidebar.collapsed .icon-closed { display: flex; }
+
+/* ==========================================================================
+   CONTENIDO PRINCIPAL
+   ========================================================================== */
+.main-content {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+/* Contenido: ocupa todo el ancho disponible con padding lateral equilibrado */
+.content-wrapper {
+    padding: 4rem 3.5rem;
+}
+
+.main-content section {
+    margin-bottom: 6rem;
+    scroll-margin-top: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 0.875rem;
+    border-bottom: 1px solid var(--border-color);
+    letter-spacing: -0.025em;
+}
+
+/* ==========================================================================
+   OVERLAY MÓVIL
+   ========================================================================== */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 90;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* ==========================================================================
+   COMPONENTES SAAS
+   ========================================================================== */
+.saas-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow:
+        0 1px 3px rgba(0,0,0,0.04),
+        0 4px 16px rgba(0,0,0,0.04);
+    margin: 1.5rem 0;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.saas-card:hover {
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.06),
+        0 16px 40px -8px rgba(0, 80, 155, 0.1);
+    transform: translateY(-2px);
+}
+
+.saas-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+    color: var(--blue-3);
+}
+
+/* ==========================================================================
+   TABLAS
+   ========================================================================== */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem 0;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9375rem;
+}
+
+th {
+    background-color: #F8FAFC;
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: var(--blue-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+tr:last-child td { border-bottom: none; }
+
+/* ==========================================================================
+   MOCKUP PLACEHOLDER
+   ========================================================================== */
+.mockup-placeholder {
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(145deg, #F1F5F9 0%, #E8EDF5 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin: 2rem 0;
+    box-shadow:
+        inset 0 2px 8px rgba(0,0,0,0.02),
+        0 8px 24px -8px rgba(0,0,0,0.06);
+    overflow: hidden;
+    position: relative;
+}
+
+.mockup-placeholder::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 32px;
+    background: rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+/* ==========================================================================
+   NAVEGACIÓN LATERAL
+   ========================================================================== */
+.nav-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding-bottom: 1rem;
+}
+
+.nav-list a {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    font-family: var(--font-title);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.45rem 0.625rem;
+    border-radius: 7px;
+    transition: background-color var(--transition-ui), color var(--transition-ui);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.nav-list a:hover {
+    background-color: rgba(0,0,0,0.04);
+    color: var(--text-main);
+}
+
+.nav-icon {
+    margin-right: 8px;
+    font-size: 0.8rem;
+    color: #C4C4C8;
+    transition: transform 0.3s ease, color 0.22s ease;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.nav-list a.active {
+    font-weight: 700;
+    color: var(--blue-1);
+    background-color: rgba(0, 80, 155, 0.07);
+}
+
+.nav-list a.active .nav-icon {
+    transform: rotate(90deg);
+    color: var(--blue-1);
+}
+
+/* ==========================================================================
+   STICKY SCROLL — LOGOTIPO INTERACTIVO
+   ========================================================================== */
+.logo-sticky-wrapper {
+    display: flex;
+    position: relative;
+    height: 300vh;
+    margin: 3rem 0;
+}
+
+.logo-visual {
+    position: sticky;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.logo-display-container {
+    width: 100%;
+    height: 56vh;
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0 8px 32px -10px rgba(0,0,0,0.07);
+    overflow: hidden;
+}
+
+.interactive-logo {
+    max-width: 55%;
+    height: auto;
+    transition:
+        transform 0.6s var(--ease-spring),
+        filter 0.5s ease;
+}
+
+.logo-content {
+    width: 50%;
+    padding: 0 0 0 3rem;
+}
+
+.logo-step {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-step h3 {
+    font-size: 1.875rem;
+    margin-bottom: 0.75rem;
+    color: var(--blue-3);
+}
+
+/* ==========================================================================
+   FULLSCREEN COLOR STICKY
+   ========================================================================== */
+.fullscreen-scroll-container {
+    position: relative;
+    width: 100%;
+    height: 400vh;
+}
+
+.fullscreen-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.55s var(--ease-spring);
+    background-color: var(--blue-1);
+    overflow: hidden;
+}
+
+.color-info {
+    text-align: center;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.color-hex {
+    font-family: var(--font-title);
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    margin-bottom: 1rem;
+    transition: opacity 0.25s ease, color 0.25s ease;
+}
+
+.color-details {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    opacity: 0.85;
+    transition: opacity 0.25s ease, color 0.25s ease;
+}
+
+.color-trigger {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+}
+.trigger-1 { top: 0; }
+.trigger-2 { top: 100vh; }
+.trigger-3 { top: 200vh; }
+.trigger-4 { top: 300vh; }
+
+/* ==========================================================================
+   TIPOGRAFÍA SPLIT STICKY
+   ========================================================================== */
+.typo-sticky-wrapper {
+    display: flex;
+    position: relative;
+    height: 200vh;
+    margin: 3rem 0;
+}
+
+.typo-visual {
+    position: sticky;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.typo-big-letter {
+    font-size: clamp(7rem, 12vw, 14rem);
+    line-height: 1;
+    color: var(--blue-3);
+    font-weight: 800;
+    transition: opacity 0.25s ease;
+    user-select: none;
+}
+
+.typo-content {
+    width: 50%;
+    padding: 10vh 0 10vh 3rem;
+}
+
+.typo-step {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.typo-step h3 {
+    font-size: 2.25rem;
+    margin-bottom: 0.75rem;
+}
+
+/* ==========================================================================
+   FADE IN SCROLL
+   ========================================================================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   BOTÓN MENÚ MÓVIL (HAMBURGUESA)
+   ========================================================================== */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 1.125rem;
+    right: 1.125rem;
+    z-index: 200;
+    background: var(--blue-3);
+    color: #fff;
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.15),
+        0 8px 24px rgba(34,50,97,0.25);
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.22s ease, transform 0.18s ease;
+}
+
+.menu-toggle:hover  { background: var(--blue-2); transform: scale(1.06); }
+.menu-toggle:active { transform: scale(0.94); }
+
+/* Iconos hamburguesa / cierre */
+.menu-toggle .icon-hamburger { display: flex; }
+.menu-toggle .icon-close     { display: none; }
+.menu-toggle.is-open .icon-hamburger { display: none; }
+.menu-toggle.is-open .icon-close     { display: flex; }
+
+/* ==========================================================================
+   RESPONSIVE — ≤ 1024px (TABLETAS Y MÓVIL)
+   ========================================================================== */
+@media (max-width: 1024px) {
+
+    /* Mostrar botón hamburguesa */
+    .menu-toggle { display: flex; }
+
+    /* Ocultar botón interno de colapso */
+    .sidebar-toggle-btn { display: none !important; }
+
+    /* Sidebar: sale del flujo, desliza desde la izquierda */
+    .sidebar {
+        position: fixed !important;
+        top: 0;
+        left: -100%;
+        width: 280px !important;
+        height: 100% !important;
+        padding: 1.5rem 1.125rem !important;
+        z-index: 110;
+        overflow-y: auto;
+        background-color: #F4F4F5 !important;
+        box-shadow: none;
+        /* Solo animar el deslizamiento */
+        transition: left 0.36s var(--ease-spring), box-shadow 0.36s ease !important;
+    }
+
+    /* FIX: logo y nav siempre visibles en móvil */
+    .sidebar .sidebar-logo,
+    .sidebar .sidebar-nav {
+        opacity: 1 !important;
+        visibility: visible !important;
+        max-width: 200px !important;
+        transition: none !important;
+    }
+
+    /* Logo container restaurado en móvil */
+    .sidebar .sidebar-logo-container {
+        justify-content: space-between !important;
+        margin-bottom: 1.75rem !important;
+        padding: 0 !important;
+    }
+
+    .sidebar.open {
+        left: 0 !important;
+        box-shadow: 8px 0 40px rgba(0,0,0,0.1) !important;
+    }
+
+    .main-content { width: 100%; }
+
+    .content-wrapper {
+        padding: 3rem 2rem;
+    }
+
+    /* Logo sticky → estático en tablet/móvil */
+    .logo-sticky-wrapper {
+        flex-direction: column;
+        height: auto;
+        margin: 1.5rem 0;
+    }
+
+    .logo-visual {
+        width: 100%;
+        height: 28vh;
+        position: relative;
+        top: auto;
+        padding: 0;
+    }
+
+    .logo-display-container {
+        height: 100%;
+        border-radius: 16px;
+    }
+
+    .logo-content {
+        width: 100%;
+        padding: 0;
+    }
+
+    .logo-step {
+        height: auto;
+        padding: 2.25rem 0;
+    }
+
+    /* Tipografía sticky → estático */
+    .typo-sticky-wrapper {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .typo-visual {
+        width: 100%;
+        height: 24vh;
+        position: relative;
+        top: auto;
+    }
+
+    .typo-big-letter { font-size: 7rem; }
+
+    .typo-content {
+        width: 100%;
+        padding: 0;
+    }
+
+    .typo-step {
+        height: auto;
+        padding: 2rem 0;
+    }
+
+    .section-header h2 { font-size: 1.75rem; }
+    .logo-step h3      { font-size: 1.5rem; }
+    .typo-step h3      { font-size: 1.875rem; }
+}
+
+@media (max-width: 640px) {
+    .content-wrapper    { padding: 2.5rem 1.25rem; }
+    .section-header h2  { font-size: 1.5rem; }
+    .saas-card          { padding: 1.375rem; border-radius: 14px; }
+    .mockup-placeholder { height: 240px; font-size: 0.875rem; }
+    blockquote          { padding: 1.125rem 1.25rem; font-size: 1rem; }
+    th, td              { padding: 0.875rem 1rem; font-size: 0.875rem; }
+    .main-content section { margin-bottom: 4rem; }
+}
